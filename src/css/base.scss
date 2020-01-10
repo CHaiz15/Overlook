@@ -1,6 +1,77 @@
 /* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: pink;
+// $primary-background: pink;
+@import 'variables';
+
 
 body {
-  background-color: $primary-background;
+  background: top / cover no-repeat url("../images/starryNight.jpg") rgba(0, 0, 0, 0.5);
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#title {
+  font-size: 3em;
+  display: flex;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.main-menu {
+  align-items: center;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  height: 100vh;
+  text-align: center;
+  display: none;
+}
+
+.main-input {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.input-wrapper {
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  font-size: 2rem;
+  justify-content: center;
+}
+
+.login-wrapper {
+  display: flex;
+  flex-flow: column nowrap;
+  margin-bottom: 2.5em;
+  padding: 0 2em;
+}
+
+.player-input {
+  border-radius: 0.5em;
+  font-size: 1em;
+  padding-left: .25em;
+  width: 15em;
+}
+
+.player-button {
+  border: none;
+  border-radius: 1em;
+  cursor: pointer;
+  justify-self: center;
+  font-size: 2em;
+  padding: 0.5em;
+  margin: 1em;
+  width: 20em;
+}
+
+.input-title {
+  color: white;
+}
+
+//user-interface
+
+.user-interface {
+  
 }
