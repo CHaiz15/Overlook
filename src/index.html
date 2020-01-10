@@ -25,7 +25,7 @@
           </div>
           <div class="login-wrapper">
             <label for="player2" class="input-title">Password:</label>
-            <input class="player-input" type="text" id="player2">
+            <input class="player-input" id="player2" type="password">
           </div>
         </div>
       </form>
@@ -33,11 +33,53 @@
         <button class="player-button">Explore the Night</button>
         <div>
     </section>
-    <section class="user-interface hide-class">
-      <div class="past-nights">one</div>
-      <div class="book-night">two</div>
-      <div class="future-nights">three</div>
-      <section>
+    <section class="user-interface">
+      <label>Past Nights:
+        <div class="past-nights"></div>
+      </label>
+      <label for="book-night">Book Night:
+        <div class="book-night">
+          <div class="">
+            <label for="user-night-input">Pick a night:</label>
+            <input id="user-night-input" type="date">
+          </div>
+          <div>
+            <label for="room-filter">Room Type:</label>
+            <select id="room-filter" name="room-type">
+              <!-- change these to lower case when checking whats picked -->
+              <option value="single room">Single Room</option>
+              <option value="suite">Suite</option>
+              <option value="junior Suite">Junior Suite</option>
+              <option value="residential suite">Residential Suite</option>
+            </select>
+          </div>
+          <div class="">
+            <label for="user-rooms-available">Available Rooms:</label>
+            <div class="user-rooms-available">
+              Room: sfafd
+            </div>
+          </div>
+        </div>
+      </label>
+      <label>Future Nights:
+        <div class="future-nights"></div>
+      </label>
+    </section>
+    <section class="manager-interface">
+      <label>Todays Statistics:
+        <div class="todays-statistics">
+          <li>Revenue: $69420</li>
+          <li>% of Rooms Available: %69</li>
+          <li>Number of Rooms Available: 420</li>
+        </div>
+      </label>
+      <label>Customer Changes:
+        <div class="customer-changes">
+          <div class="current-bookings"></div>
+          <div class="add-booking"></div>
+        </div>
+      </label>
+    </section>
   </main>
 </body>
 
