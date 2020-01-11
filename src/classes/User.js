@@ -1,13 +1,14 @@
 class User {
-  constructor() {
-    this.futureBookings;
+  constructor(allBookings) {
     this.id;
     this.name;
-    this.datePicked;
-    this.currentSpent;
+    this.allBookings;
   }
   bookRoom(){
-    
+
+  }
+  calculateTotalSpent(){
+
   }
 }
 

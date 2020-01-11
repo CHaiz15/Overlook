@@ -13,7 +13,10 @@ describe('Rooms:', () => {
   });
 
   describe('Default Values:', () => {
-
+    it('should store todays date', function() {
+      let date = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+      expect(rooms.todaysDate).to.equal(date);
+    });
     describe('Method Values:', () => {
 
     })
