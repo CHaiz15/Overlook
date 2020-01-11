@@ -1,5 +1,13 @@
 class User {
-  constructor() {
+  constructor(allBookings) {
+    this.id;
+    this.name;
+    this.allBookings;
+  }
+  bookRoom(){
+
+  }
+  calculateTotalSpent(){
 
   }
 }

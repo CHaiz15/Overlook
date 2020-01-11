@@ -1,13 +1,35 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you import jQuery into a JS file if you use jQuery in that file
 import $ from 'jquery';
-
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
 
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-// import './images/turing-logo.png'
+import Rooms from '../src/classes/Rooms.js';
+import User from '../src/classes/User.js';
+import Manager from '../src/classes/Manager.js';
 
-console.log('This is the JavaScript entry file - your code begins here.');
+// Data fetching
+let roomsData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms').then(response => response.json()).then(data => data.rooms);
+let usersData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users').then(response => response.json()).then(data => data.users);
+let bookingsData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings').then(response => response.json()).then(data => data.bookings);
+
+Promise.all([roomsData, usersData, bookingsData])
+  .then(data => {
+    roomsData = data[0];
+    usersData = data[1];
+    bookingsData = data[2];
+  })
+  .then(() => {
+    checkLogin(roomsData, usersData, bookingsData);
+  })
+
+function checkLogin(roomsData, usersData, bookingsData) {
+  console.log(roomsData);
+  console.log(usersData);
+  console.log(bookingsData);
+}
+
+
+
+let rooms = new Rooms();
+let user = new User();
+let manager = new Rooms();
+
+console.log(rooms.todaysDate);
