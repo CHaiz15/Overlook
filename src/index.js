@@ -29,10 +29,12 @@ Promise.all([roomsData, usersData, bookingsData])
 })
 
 function checkLoginInfo(roomsData, usersData, bookingsData) {
-  if ($('#username-input').val() === 'manager' && $('#password-input').val() === 'overlook2019') {
+  let userId = parseInt($('#username-input').val().slice(8));
+  let passwordCheck = $('#password-input').val() === 'overlook2019';
+  let userIdCheck = Number.isInteger(userId);
+  if ($('#username-input').val() === 'manager' && passwordCheck) {
     let manager = new Manager();
-  } else if ($('#username-input').val().slice(0, 8) === 'customer' && $('#password-input').val() === 'overlook2019') {
-    let userId = $('#username-input').val().slice(8);
+  } else if ($('#username-input').val().slice(0, 8) === 'customer' && passwordCheck && userIdCheck) {
     let user = new User(bookingsData, usersData, userId);
     openUserInterface();
   } else {
