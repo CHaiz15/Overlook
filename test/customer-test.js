@@ -1,15 +1,15 @@
 import chai from 'chai';
 const expect = chai.expect;
 
-import User from '../src/classes/User.js';
+import Customer from '../src/classes/Customer.js';
 
-describe('User:', () => {
-  let user;
+describe('Customer:', () => {
+  let customer;
   beforeEach(() => {
-    user = new User();
+    customer = new Customer();
   });
   it('should be a function', function() {
-    expect(User).to.be.a('function');
+    expect(Customer).to.be.a('function');
   });
 
   describe('Default Values:', () => {

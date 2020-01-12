@@ -1,20 +1,20 @@
-class Rooms {
+class Hotel {
   constructor(roomsData, bookingsData) {
     this.rooms = roomsData;
     this.bookings = bookingsData;
     this.todaysDate = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
   }
-  userBookings(usersId) {
+  customerBookings(usersId) {
     return this.bookings.filter(booking => {
       return booking.userID === usersId;
     })
   }
-  userPastNights(userBookings, userId) {
+  customerPastNights(userBookings, userId) {
     return userBookings.filter(booking => {
       return booking.date < this.todaysDate;
     })
   }
-  userFutureNights(userBookings, userId) {
+  customerFutureNights(userBookings, userId) {
     return userBookings.filter(booking => {
       return booking.date > this.todaysDate;
     })
@@ -22,7 +22,7 @@ class Rooms {
   bookCustomerRoom() {
 
   }
-  availableRooms() {
+  availableHotel() {
 
   }
   FilterByType() {
@@ -31,15 +31,15 @@ class Rooms {
   FilterByDate() {
 
   }
-  percentOfRoomsAvailable() {
+  percentOfHotelAvailable() {
 
   }
-  todaysAvailableRooms() {
+  todaysAvailableHotel() {
 
   }
-  calculateRooms() {
+  calculateHotel() {
 
   }
 }
 
-export default Rooms;
+export default Hotel;
