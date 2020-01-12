@@ -4,6 +4,12 @@ import './css/base.scss';
 import Rooms from '../src/classes/Rooms.js';
 import User from '../src/classes/User.js';
 import Manager from '../src/classes/Manager.js';
+import {loginError, openUserInterface} from '../src/domUpdates.js';
+
+// Classes
+let rooms;
+let user;
+let manager;
 
 // Data fetching
 let roomsData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms').then(response => response.json()).then(data => data.rooms);
@@ -15,21 +21,21 @@ Promise.all([roomsData, usersData, bookingsData])
     roomsData = data[0];
     usersData = data[1];
     bookingsData = data[2];
-  })
-  .then(() => {
-    checkLogin(roomsData, usersData, bookingsData);
-  })
+  }).then(() => {
+    $('.explore-button').click(function() {
+      rooms = new Rooms(roomsData, bookingsData)
+      checkLoginInfo(roomsData, usersData, bookingsData);
+    })
+})
 
-function checkLogin(roomsData, usersData, bookingsData) {
-  console.log(roomsData);
-  console.log(usersData);
-  console.log(bookingsData);
+function checkLoginInfo(roomsData, usersData, bookingsData) {
+  if ($('#username-input').val() === 'manager' && $('#password-input').val() === 'overlook2019') {
+    let manager = new Manager();
+  } else if ($('#username-input').val().slice(0, 8) === 'customer' && $('#password-input').val() === 'overlook2019') {
+    let userId = $('#username-input').val().slice(8);
+    let user = new User(bookingsData, usersData, userId);
+    openUserInterface();
+  } else {
+    loginError();
+  }
 }
-
-
-
-let rooms = new Rooms();
-let user = new User();
-let manager = new Rooms();
-
-console.log(rooms.todaysDate);
