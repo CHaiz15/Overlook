@@ -12,12 +12,12 @@ class Hotel {
   customerPastNights(userBookings, userId) {
     return userBookings.filter(booking => {
       return booking.date < this.todaysDate;
-    })
+    }).sort()
   }
   customerFutureNights(userBookings, userId) {
     return userBookings.filter(booking => {
       return booking.date > this.todaysDate;
-    })
+    }).sort()
   }
   bookCustomerRoom() {
 
@@ -32,7 +32,7 @@ class Hotel {
 
   }
   percentOfHotelAvailable() {
-
+    
   }
   todaysAvailableHotel() {
 
