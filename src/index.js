@@ -31,7 +31,7 @@ Promise.all([roomsData, usersData, bookingsData])
 function checkLoginInfo(roomsData, usersData, bookingsData) {
   let userId = parseInt($('#username-input').val().slice(8));
   let passwordCheck = $('#password-input').val() === 'overlook2019';
-  let userIdCheck = Number.isInteger(userId);
+  let userIdCheck = usersData.find(user => user.id = userId);
   if ($('#username-input').val() === 'manager' && passwordCheck) {
     let manager = new Manager();
   } else if ($('#username-input').val().slice(0, 8) === 'customer' && passwordCheck && userIdCheck) {
