@@ -1,16 +1,13 @@
 class Rooms {
-  constructor() {
-    this.rooms;
-    this.bookings;
+  constructor(roomsData, bookingsData) {
+    this.rooms = roomsData;
+    this.bookings = bookingsData;
     this.todaysDate = new Date().toJSON().slice(0,10).replace(/-/g,'/');
   }
   customersPastNights(){
 
   }
   availableRooms(){
-
-  }
-  futureNights(){
 
   }
   FilterByType(){
