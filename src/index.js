@@ -1,14 +1,14 @@
 import $ from 'jquery';
 import './css/base.scss';
 
-import Rooms from '../src/classes/Rooms.js';
-import User from '../src/classes/User.js';
+import Hotel from '../src/classes/Hotel.js';
+import Customer from '../src/classes/Customer.js';
 import Manager from '../src/classes/Manager.js';
-import {loginError, openUserInterface, instantiateFutureAndPastNights} from '../src/domUpdates.js';
+import {loginError, openCustomerInterface, instantiateFutureAndPastNights} from '../src/domUpdates.js';
 
 // Classes
-let rooms;
-let user;
+let hotel;
+let customer;
 let manager;
 
 // Data fetching
@@ -23,21 +23,21 @@ Promise.all([roomsData, usersData, bookingsData])
     bookingsData = data[2];
   }).then(() => {
     $('.explore-button').click(function() {
-      rooms = new Rooms(roomsData, bookingsData)
+      hotel = new Hotel(roomsData, bookingsData)
       checkLoginInfo(roomsData, usersData, bookingsData);
     })
 })
 
 function checkLoginInfo(roomsData, usersData, bookingsData) {
-  let userId = parseInt($('#username-input').val().slice(8));
+  let customerId = parseInt($('#username-input').val().slice(8));
   let passwordCheck = $('#password-input').val() === 'overlook2019';
-  let userIdCheck = usersData.find(foundUser => foundUser.id === userId);
+  let customerIdCheck = usersData.find(foundUser => foundUser.id === customerId);
   if ($('#username-input').val() === 'manager' && passwordCheck) {
     let manager = new Manager();
-  } else if ($('#username-input').val().slice(0, 8) === 'customer' && passwordCheck && userIdCheck) {
-    let user = new User(rooms.userBookings(userId), usersData.find(user => user.id === userId).name, userId);
-    openUserInterface(user.name);
-    instantiateFutureAndPastNights(rooms.userPastNights(user.userBookings, userId), rooms.userFutureNights(user.userBookings, userId));
+  } else if ($('#username-input').val().slice(0, 8) === 'customer' && passwordCheck && customerIdCheck) {
+    let customer = new Customer(hotel.customerBookings(customerId), usersData.find(customer => customer.id === customerId).name, customerId);
+    openCustomerInterface(customer.name);
+    instantiateFutureAndPastNights(hotel.customerPastNights(customer.customerBookings, customerId), hotel.customerFutureNights(customer.customerBookings, customerId));
   } else {
     loginError();
   }

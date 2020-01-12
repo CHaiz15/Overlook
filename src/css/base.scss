@@ -87,7 +87,7 @@ body {
   font-size: 1em;
 }
 
-//user-interface
+//customer-interface
 
 .nav-corners {
   display: flex;
@@ -96,7 +96,7 @@ body {
   visibility: hidden;
 }
 
-.user-cost {
+.customer-cost {
   height: 20%;
   width: 40%;
   border: 3px solid white;
@@ -118,7 +118,7 @@ body {
   }
 }
 
-.user-interface {
+.customer-interface {
   align-items: center;
   display: grid;
   grid-template-columns: .6fr 1fr .6fr;
@@ -150,7 +150,7 @@ body {
   justify-content: center;
 }
 
-#user-night-input {
+#customer-night-input {
   margin-top: 4%;
 }
 
@@ -158,7 +158,7 @@ body {
   margin-top: 4%;
 }
 
-.user-rooms-available {
+.customer-rooms-available {
   border: 2px solid white;
   height: 80%;
 }
