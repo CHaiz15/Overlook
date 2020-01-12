@@ -3,6 +3,7 @@
 
 <head>
   <title>Overlook</title>
+  <link href="https://fonts.googleapis.com/css?family=Yesteryear&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -17,25 +18,23 @@
   </section>
   <main>
     <section class="main-menu">
-      <form class="player-entry">
-        <div class="input-wrapper">
-          <div class="login-wrapper">
-            <label for="player1" class="input-title">Username:</label>
-            <input class="player-input" type="text" id="player1">
-          </div>
-          <div class="login-wrapper">
-            <label for="player2" class="input-title">Password:</label>
-            <input class="player-input" id="player2" type="password">
-          </div>
+      <div class="input-wrapper">
+        <div class="login-wrapper">
+          <label for="username-input" class="input-title">Username:</label>
+          <input class="user-input" type="text" id="username-input">
         </div>
-      </form>
+        <div class="login-wrapper">
+          <label for="password-input" class="input-title">Password:</label>
+          <input class="user-input" id="password-input" type="password">
+        </div>
+      </div>
       <div class="input-div">
-        <button class="player-button">Explore the Night</button>
+        <button class="explore-button">Explore the Night</button>
         <div>
     </section>
-    <section class="user-interface">
+    <section class="user-interface close-display">
       <label>Past Nights:
-        <div class="past-nights"></div>
+      <div id="past-nights"></div>
       </label>
       <label for="book-night">Book Night:
         <div class="book-night">
@@ -61,8 +60,8 @@
           </div>
         </div>
       </label>
-      <label>Future Nights:
-        <div class="future-nights"></div>
+      <label for="future-nights">Future Nights:
+      <div id="future-nights"></div>
       </label>
     </section>
     <section class="manager-interface">
