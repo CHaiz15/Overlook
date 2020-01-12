@@ -1,13 +1,19 @@
 class User {
-  constructor(allBookings) {
-    this.id;
+  constructor(bookingsData, usersData, userId) {
+    this.id = userId;
     this.name;
-    this.allBookings;
+    this.allBookings = bookingsData;
   }
-  bookRoom(){
+  bookRoom() {
 
   }
-  calculateTotalSpent(){
+  calculateTotalSpent() {
+
+  }
+  findPastNights() {
+
+  }
+  findFutureNights() {
 
   }
 }
