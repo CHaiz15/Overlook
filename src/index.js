@@ -49,7 +49,7 @@ function checkLoginInfo(roomsData, usersData, bookingsData) {
 }
 
 function displayCustomerInterface(customerId) {
-  domUpdates.openCustomerInterface(customer.name, hotel.todaysDate);
+  domUpdates.openCustomerInterface(customer.name, hotel.todaysDate, customer.calculateTotalSpent(hotel.rooms));
   domUpdates.instantiateFutureAndPastNights(hotel.customerPastNights(customer.customerBookings, customerId), hotel.customerFutureNights(customer.customerBookings, customerId));
   domUpdates.instantiateAvailableRooms(hotel.filterByDate($('#customer-night-input').val().slice(0, 10).replace(/-/g, '/')));
 }
