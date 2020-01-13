@@ -13,7 +13,7 @@ class Customer {
         return booking.roomNumber === room.number;
       }).costPerNight
     }).reduce((a, b) => a + b, 0);
-    return Math.max(Math.round(costs * 10) / 10, 2.8).toFixed(2);
+    return costs.toFixed(2);
   }
 }
 
