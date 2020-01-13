@@ -6,7 +6,7 @@ export const domUpdates = {
     $('.user-input').addClass('login-error-indicator');
   },
 
-  openCustomerInterface(usersName, date) {
+  openCustomerInterface(usersName, date, customerSpent) {
     $('.main-menu').addClass('close-display');
     $('.customer-interface').removeClass('close-display');
     $('body').css({
@@ -15,6 +15,7 @@ export const domUpdates = {
     $('#title').text(`Welcome, ${usersName}!`);
     $('#customer-night-input').attr("min", date.split('/').join('-'));
     $('#customer-night-input').attr("value", date.split('/').join('-'));
+    $('.customer-cost').text(`Total Spent: $${customerSpent}`)
   },
 
   instantiateFutureAndPastNights(pastNights, futureNights, userID) {
