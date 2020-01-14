@@ -21,7 +21,7 @@
       <div class="input-wrapper">
         <div class="login-wrapper">
           <label for="username-input" class="input-title">Username:</label>
-          <input class="user-input" type="text" value="customer50" id="username-input">
+          <input class="user-input" type="text" value="manager" id="username-input">
         </div>
         <div class="login-wrapper">
           <label for="password-input" class="input-title">Password:</label>
@@ -34,10 +34,10 @@
     </section>
     <section class="customer-interface close-display">
       <label>Past Nights:
-      <div id="past-nights">
-        <ul class="past-nights-list">
-        </ul>
-      </div>
+        <div id="past-nights">
+          <ul class="past-nights-list">
+          </ul>
+        </div>
       </label>
       <label for="book-night">Book Night:
         <div class="book-night">
@@ -65,24 +65,28 @@
         </div>
       </label>
       <label for="future-nights">Future Nights:
-      <div id="future-nights">
-        <ul class="future-nights-list">
-        </ul>
-      </div>
+        <div id="future-nights">
+          <ul class="future-nights-list">
+          </ul>
+        </div>
       </label>
     </section>
-    <section class="manager-interface">
+    <section class="manager-interface close-display">
       <label>Todays Statistics:
         <div class="todays-statistics">
           <li class="revenue">Revenue: $69420</li>
-          <li>% of Rooms Available: %69</li>
-          <li>Number of Rooms Available: 420</li>
+          <li class="rooms-occupied"></li>
+          <li class="rooms-available"></li>
         </div>
       </label>
       <label>Customer Changes:
         <div class="customer-changes">
-          <div class="current-bookings"></div>
-          <div class="add-booking"></div>
+          <label for="current-bookings">Current Bookings:
+            <div id="current-bookings"></div>
+          </label>
+          <label for="add-booking">Add Booking:
+            <div id="add-booking"></div>
+          </label>
         </div>
       </label>
     </section>

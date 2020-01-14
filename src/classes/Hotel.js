@@ -33,18 +33,16 @@ class Hotel {
       return room.roomType === roomTypeChosen;
     })
   }
-  bookCustomerRoom() {
-
-  }
-  percentOfHotelAvailable() {
-
-  }
-  todaysAvailableHotel() {
-
-  }
-  calculateHotel() {
-
+  calculateTodaysRevenue() {
+    return this.bookings.filter(booking => {
+      return booking.date === this.todaysDate;
+    }).map(booking => {
+      return this.rooms.find(room => {
+        return booking.roomNumber === room.number;
+      }).costPerNight
+    }).reduce((a, b) => a + b, 0).toFixed(2);
   }
 }
+
 
 export default Hotel;
