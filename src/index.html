@@ -13,7 +13,7 @@
     </div>
     <h1 id="title">Night 0' Dreams Hotel</h1>
     <div class="nav-corners">
-      <button class="logout-button">Logout</button>
+      <button onclick="location.reload()" class="logout-button">Logout</button>
     </div>
   </section>
   <main>
@@ -74,18 +74,48 @@
     <section class="manager-interface close-display">
       <label>Todays Statistics:
         <div class="todays-statistics">
-          <li class="revenue">Revenue: $69420</li>
+          <li class="todays-revenue"></li>
           <li class="rooms-occupied"></li>
           <li class="rooms-available"></li>
         </div>
+        <label>Customer Info:
+        <div class="customer-info">
+          <li class="customer-name">Name: John Doe</li>
+          <li class="customer-total-spent">Total Spent: $0</li>
+        </div>
       </label>
-      <label>Customer Changes:
+      </label>
+      <label for="search-customer-input">Search Customer:
+        <input id="manager-search-input">
+        <button class="search-customer">Search</button>
         <div class="customer-changes">
           <label for="current-bookings">Current Bookings:
-            <div id="current-bookings"></div>
+
+            <div id="current-bookings">
+              <ul class="future-nights-list">
+              </ul>
+            </div>
           </label>
-          <label for="add-booking">Add Booking:
-            <div id="add-booking"></div>
+          <label>Add Booking:
+            <div>
+              <label for="manager-night-input">Pick a Night:</label>
+              <input id="manager-night-input" type="date">
+            </div>
+            <div>
+              <label for="manager-room-filter">Room Type:</label>
+              <select id="manager-room-filter" name="room-type">
+                <option value="single room">Single Room</option>
+                <option value="suite">Suite</option>
+                <option value="junior suite">Junior Suite</option>
+                <option value="residential suite">Residential Suite</option>
+              </select>
+            </div>
+            <button class="manager-search-availablity">Search Availablity</button>
+
+            <div id="add-booking">
+              <ul class="add-booking-list">
+              </ul>
+            </div>
           </label>
         </div>
       </label>
