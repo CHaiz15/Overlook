@@ -6,9 +6,12 @@ export const domUpdates = {
     $('.user-input').addClass('login-error-indicator');
   },
 
-// Manager DOM Updates
+  // Manager DOM Updates
   openManagerInterface(todaysBookings, roomsAvailable, allRooms, todaysRevenue, date) {
-    $('#manager-night-input').attr({"min": date.split('/').join('-'), "value": date.split('/').join('-')});
+    $('#manager-night-input').attr({
+      "min": date.split('/').join('-'),
+      "value": date.split('/').join('-')
+    });
     $('body').css('background', "linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(../images/manager-background.jpg) center / cover");
     $('.nav-corners').css('visibility', 'visible');
     $('.main-menu').hide();
@@ -22,7 +25,6 @@ export const domUpdates = {
     $('.customer-name').text(`Name: ${customerName}`);
     $('.customer-total-spent').text(`Total Spent: ${customerSpent}`);
     $('.future-nights-list').empty();
-    // add past nights but with no button?
     futureNights.forEach(night => {
       $('.future-nights-list').append(`<li>You have room #${night.roomNumber} booked for ${night.date}.</li><button class="delete-room" id="${night.id}">Delete</button>`);
     });
@@ -39,14 +41,17 @@ export const domUpdates = {
     }
   },
 
-// Customer DOM Updates
+  // Customer DOM Updates
   openCustomerInterface(usersName, date, customerSpent) {
     $('.nav-corners, .customer-cost').css('visibility', 'visible');
     $('.main-menu').hide();
     $('.customer-interface').removeClass('close-display');
     $('body').css('background', "linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(../images/user-image.jpg) center / cover");
     $('#title').text(`Welcome, ${usersName}!`);
-    $('#customer-night-input').attr({"min": date.split('/').join('-'), "value": date.split('/').join('-')});
+    $('#customer-night-input').attr({
+      "min": date.split('/').join('-'),
+      "value": date.split('/').join('-')
+    });
     $('.customer-cost').text(`Total Spent: $${customerSpent}`);
   },
 
