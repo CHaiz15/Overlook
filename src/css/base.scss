@@ -1,14 +1,13 @@
 @import 'variables';
 
 body {
-  background:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../images/hotel-main-image.jpg") center / cover;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../images/hotel-main-image.jpg") center / cover;
   background-attachment: fixed;
   height: 100%;
   width: 100%;
-  // font-family: $main-font;
+  font-family: $main-font;
 }
-
-// nav-bar
+// nav-bar style
 .nav-bar {
   padding-left: 10px;
   padding-right: 10px;
@@ -23,9 +22,7 @@ body {
   justify-content: center;
   color: #ffffff;
 }
-
-// possibly add hide-class to toggle
-
+// main-menu style
 .main-menu {
   align-items: center;
   display: grid;
@@ -76,9 +73,10 @@ body {
   width: 20em;
   font-family: $main-font;
   transition-duration: 0.2s;
-    &:hover {
-      @include highlightButton();
-      color: white;
+
+  &:hover {
+    @include highlightButton();
+    color: white;
   }
 }
 
@@ -86,9 +84,7 @@ body {
   color: white;
   font-size: 1em;
 }
-
-//customer-interface
-
+// customer-interface style
 .nav-corners {
   display: flex;
   justify-content: center;
@@ -97,22 +93,13 @@ body {
 }
 
 .customer-cost {
-  height: 30%;
-  width: 40%;
-  border: 3px solid white;
-  border-radius: 10px;
-  background-color: white;
-  text-align: center;
+  @include cornerStyle();
   visibility: hidden;
 }
 
 .logout-button {
-  height: 20%;
-  width: 40%;
-  border: 3px solid white;
-  border-radius: 10px;
-  background-color: white;
-  text-align: center;
+  @include cornerStyle();
+
   &:hover {
     @include highlightButton();
   }
@@ -121,7 +108,7 @@ body {
 .customer-interface {
   align-items: center;
   display: grid;
-  grid-template-columns: .6fr 1fr .6fr;
+  grid-template-columns: 0.6fr 1fr 0.6fr;
   text-align: center;
 }
 
@@ -129,29 +116,20 @@ body {
 #past-nights {
   overflow: scroll;
   height: 60vh;
-  border: 2px solid white;
-  border-radius: 10px;
-  background-color: $secondary-color;
-  opacity: 0.85;
   padding: 3%;
   margin: 5%;
   box-shadow: $main-box-shadow;
+  @include nightStyle();
 }
 
 .book-night {
   height: 70vh;
   width: 100%;
-  border: 2px solid white;
-  border-radius: 10px;
-  background-color: $secondary-color;
-  box-shadow: 0px 0px 7px white;
-  opacity: 0.85;
+  box-shadow: 0 0 7px white;
+  @include nightStyle();
 }
 
-#customer-night-input {
-  margin-top: 4%;
-}
-
+#customer-night-input,
 #room-filter {
   margin-top: 4%;
 }
@@ -160,9 +138,7 @@ body {
   height: 45vh;
   overflow: scroll;
 }
-
-// manager-interface
-
+// manager-interface style
 li {
   font-size: 22px;
   margin: 1.5em;
@@ -176,15 +152,15 @@ label {
 .manager-interface {
   align-items: center;
   display: grid;
-  grid-template-columns: .5fr 1fr;
+  grid-template-columns: 0.5fr 1fr;
   text-align: center;
 }
 
-.todays-statistics,
 .customer-changes,
-.customer-info {
+.customer-info,
+.todays-statistics {
   @include managerStyle();
-  box-shadow: 0px 0px 7px white;
+  box-shadow: 0 0 7px white;
   opacity: 0.85;
 }
 
@@ -207,7 +183,6 @@ label {
   overflow: scroll;
   @include managerStyle();
 }
-
 // Close display class
 .close-display {
   display: none;

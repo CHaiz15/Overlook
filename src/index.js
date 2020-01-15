@@ -5,7 +5,9 @@ import moment from 'moment';
 import Hotel from '../src/classes/Hotel.js';
 import Customer from '../src/classes/Customer.js';
 import Manager from '../src/classes/Manager.js';
-import {domUpdates} from '../src/domUpdates.js';
+import {
+  domUpdates
+} from '../src/domUpdates.js';
 
 // Classes
 let hotel;
@@ -20,9 +22,10 @@ let bookingsData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/boo
   .then(response => response.json())
   .then(data => data.bookings)
   .then(data => {
-    return data.sort(function(a, b){
-    return new Date(a.date) - new Date(b.date);
-  })});
+    return data.sort(function(a, b) {
+      return new Date(a.date) - new Date(b.date);
+    })
+  });
 
 Promise.all([roomsData, usersData, bookingsData])
   .then(data => {
@@ -34,7 +37,7 @@ Promise.all([roomsData, usersData, bookingsData])
       hotel = new Hotel(roomsData, bookingsData, todaysDate);
       checkLoginInfo(roomsData, usersData, bookingsData);
     })
-})
+  })
 
 // Check login information
 function checkLoginInfo() {
@@ -81,7 +84,6 @@ $('.manager-search-availablity').click(function() {
   domUpdates.updateAddRooms(hotel.filterByType(hotel.filterByDate($('#manager-night-input').val().slice(0, 10).replace(/-/g, '/')), $('#manager-room-filter').val()));
   $('.book-room').click(function() {
     manager.bookRoom(this.id, hotel.todaysDate, roomsData);
-    // handle error of undefined if a customer has not be made
   })
 })
 
@@ -97,4 +99,7 @@ $('.search-customer').click(function() {
   })
 })
 
-$('.logout-button').click(function(){location.reload()});
+// reload page on click of logout
+$('.logout-button').click(function() {
+  location.reload()
+});
