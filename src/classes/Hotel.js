@@ -1,10 +1,8 @@
-import moment from 'moment';
-
 class Hotel {
-  constructor(roomsData, bookingsData) {
+  constructor(roomsData, bookingsData, todaysDate) {
     this.rooms = roomsData;
     this.bookings = bookingsData;
-    this.todaysDate = moment().format('YYYY/MM/DD');
+    this.todaysDate = todaysDate;
   }
   customerBookings(usersId) {
     return this.bookings.filter(booking => {
