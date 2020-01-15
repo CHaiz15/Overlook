@@ -6,15 +6,40 @@ export const domUpdates = {
     $('.user-input').addClass('login-error-indicator');
   },
 
-  openManagerInterface(roomsAvailable, allRooms, todaysRevenue) {
+// Manager DOM Updates
+  openManagerInterface(todaysBookings, roomsAvailable, allRooms, todaysRevenue, date) {
+    $('#manager-night-input').attr({"min": date.split('/').join('-'), "value": date.split('/').join('-')});
+    $('body').css('background', "linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(../images/manager-background.jpg) center / cover");
     $('.nav-corners').css('visibility', 'visible');
     $('.main-menu').hide();
     $('.manager-interface').removeClass('close-display');
-    $('.todays-revenue').text(`Revenue: $${todaysRevenue}`)
-    $('.rooms-occupied').text(`Percent of rooms occupied: %${((roomsAvailable.length / allRooms) * 100).toFixed(0)}`)
-    $('.rooms-available').text(`Number of rooms available: ${roomsAvailable.length}`)
+    $('.todays-revenue').text(`Revenue: $${todaysRevenue}`);
+    $('.rooms-occupied').text(`Percent of rooms occupied: %${((todaysBookings.length / allRooms) * 100).toFixed(0)}`);
+    $('.rooms-available').text(`Number of rooms available: ${roomsAvailable.length}`);
   },
 
+  instantiateCustomersStatistics(futureNights, customerName, customerSpent) {
+    $('.customer-name').text(`Name: ${customerName}`);
+    $('.customer-total-spent').text(`Total Spent: ${customerSpent}`);
+    $('.future-nights-list').empty();
+    // add past nights but with no button?
+    futureNights.forEach(night => {
+      $('.future-nights-list').append(`<li>You have room #${night.roomNumber} booked for ${night.date}.</li><button class="delete-room" id="${night.id}">Delete</button>`);
+    });
+  },
+
+  updateAddRooms(availableRooms) {
+    $('.add-booking-list').empty();
+    if (availableRooms.length === 0) {
+      $('.add-booking-list').append('<p>We FIERCELY apololgize, but there are no rooms available. Please select a different date or room type.</p>');
+    } else {
+      availableRooms.forEach(room => {
+        $('.add-booking-list').append(`<li>Room #${room.number}. A gorgeous ${room.roomType} featuring a ${room.bedSize} bed.</li><button class="book-room" id="${room.number}">Book</button>`);
+      });
+    }
+  },
+
+// Customer DOM Updates
   openCustomerInterface(usersName, date, customerSpent) {
     $('.nav-corners, .customer-cost').css('visibility', 'visible');
     $('.main-menu').hide();
@@ -40,7 +65,7 @@ export const domUpdates = {
       $('.nights-available').append('<p>We FIERCELY apololgize, but there are no rooms available. Please select a different date or room type.</p>');
     } else {
       availableRooms.forEach(room => {
-        $('.nights-available').append(`<li>Room #${room.number}. A gorgeous ${room.roomType} featuring a ${room.bedSize} bed.</li>`);
+        $('.nights-available').append(`<li>Room #${room.number}. A gorgeous ${room.roomType} featuring a ${room.bedSize} bed.</li><button class="book-room" id="${room.number}">Book</button>`);
       });
     }
   },
