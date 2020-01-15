@@ -24,8 +24,8 @@ $secondary-color: #00b9f2;
 }
 @mixin highlightButton() {
   outline: none;
-  box-shadow: 0 0 0.75em white;
   background-color: $secondary-color;
+  box-shadow: 0 0 0.75em white;
 }
 @mixin errorDisplay() {
   outline: none;

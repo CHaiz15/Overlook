@@ -99,8 +99,8 @@ body {
 
 .logout-button {
   @include cornerStyle();
-
   &:hover {
+    background-color: $secondary-color;
     @include highlightButton();
   }
 }
@@ -182,6 +182,14 @@ label {
   height: 58vh;
   overflow: scroll;
   @include managerStyle();
+}
+
+.book-room {
+  width: 50%;
+  border-radius: 1em;
+  &:hover {
+    @include highlightButton();
+  }
 }
 // Close display class
 .close-display {
