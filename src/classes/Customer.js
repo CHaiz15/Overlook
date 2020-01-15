@@ -21,6 +21,7 @@ class Customer {
     }).catch(() => {
       console.log('IT DIDNT WORK');
     });
+    alert('Your booking has been processed! Please refresh to see changes.')
   }
   calculateTotalSpent(rooms) {
     let costs = this.customerBookings.map(booking => {
