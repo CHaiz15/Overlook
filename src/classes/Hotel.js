@@ -18,7 +18,7 @@ class Hotel {
   }
   customerFutureNights(userBookings, userId) {
     return userBookings.filter(booking => {
-      return booking.date > this.todaysDate;
+      return booking.date >= this.todaysDate;
     })
   }
   filterByDate(dateChosen) {
@@ -33,10 +33,13 @@ class Hotel {
       return room.roomType === roomTypeChosen;
     })
   }
-  calculateTodaysRevenue() {
+  todaysBookings() {
     return this.bookings.filter(booking => {
       return booking.date === this.todaysDate;
-    }).map(booking => {
+    })
+  }
+  calculateTodaysRevenue() {
+    return this.todaysBookings().map(booking => {
       return this.rooms.find(room => {
         return booking.roomNumber === room.number;
       }).costPerNight

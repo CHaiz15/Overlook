@@ -34,13 +34,13 @@ Promise.all([roomsData, usersData, bookingsData])
     })
 })
 
+// Check login information
 function checkLoginInfo() {
   let customerId = parseInt($('#username-input').val().slice(8));
   let passwordCheck = $('#password-input').val() === 'overlook2019';
   let customerIdCheck = usersData.find(foundUser => foundUser.id === customerId);
   if ($('#username-input').val() === 'manager' && passwordCheck) {
-    manager = new Manager();
-    domUpdates.openManagerInterface(hotel.filterByDate(hotel.todaysDate), usersData.length, hotel.calculateTodaysRevenue());
+    displayManagerInterface();
   } else if ($('#username-input').val().slice(0, 8) === 'customer' && passwordCheck && customerIdCheck) {
     customer = new Customer(hotel.customerBookings(customerId), usersData.find(customer => customer.id === customerId).name, customerId);
     displayCustomerInterface(customerId);
@@ -49,12 +49,49 @@ function checkLoginInfo() {
   }
 }
 
+// Customer functions
 function displayCustomerInterface(customerId) {
   domUpdates.openCustomerInterface(customer.name, hotel.todaysDate, customer.calculateTotalSpent(hotel.rooms));
   domUpdates.instantiateFutureAndPastNights(hotel.customerPastNights(customer.customerBookings, customerId), hotel.customerFutureNights(customer.customerBookings, customerId));
-  domUpdates.updateAvailableRooms(hotel.filterByDate($('#customer-night-input').val().slice(0, 10).replace(/-/g, '/')));
+  domUpdates.updateAvailableRooms(hotel.filterByType(hotel.filterByDate($('#customer-night-input').val().slice(0, 10).replace(/-/g, '/')), $('#room-filter').val()));
+  $('.book-room').click(function() {
+    customer.bookRoom(this.id, hotel.todaysDate, roomsData);
+  })
 }
 
 $('.search-availablity').click(function() {
   domUpdates.updateAvailableRooms(hotel.filterByType(hotel.filterByDate($('#customer-night-input').val().slice(0, 10).replace(/-/g, '/')), $('#room-filter').val()));
+  $('.book-room').click(function() {
+    customer.bookRoom(this.id, hotel.todaysDate, roomsData);
+  })
+})
+
+
+// Manager functions
+function displayManagerInterface() {
+  domUpdates.openManagerInterface(hotel.todaysBookings(), hotel.filterByDate(hotel.todaysDate), roomsData.length, hotel.calculateTodaysRevenue(), hotel.todaysDate);
+  domUpdates.updateAddRooms(hotel.filterByType(hotel.filterByDate($('#manager-night-input').val().slice(0, 10).replace(/-/g, '/')), $('#manager-room-filter').val()));
+  $('.book-room').click(function() {
+    manager.bookRoom(this.id, hotel.todaysDate, roomsData);
+  })
+}
+
+$('.manager-search-availablity').click(function() {
+  domUpdates.updateAddRooms(hotel.filterByType(hotel.filterByDate($('#manager-night-input').val().slice(0, 10).replace(/-/g, '/')), $('#manager-room-filter').val()));
+  $('.book-room').click(function() {
+    manager.bookRoom(this.id, hotel.todaysDate, roomsData);
+    // handle error of undefined if a customer has not be made
+  })
+})
+
+$('.search-customer').click(function() {
+  let searchedName = $('#manager-search-input').val().toLowerCase();
+  let customerId = usersData.find(customer => customer.name.toLowerCase() === searchedName).id;
+  let customerName = usersData.find(customer => customer.name.toLowerCase() === searchedName).name;
+  customer = new Customer(hotel.customerBookings(customerId), customerName, customerId);
+  manager = new Manager(hotel.customerBookings(customerId), customerName, customerId);
+  domUpdates.instantiateCustomersStatistics(hotel.customerFutureNights(customer.customerBookings, customerId), customer.name, customer.calculateTotalSpent(roomsData));
+  $('.delete-room').click(function() {
+    manager.removeCustomerBooking(this.id, bookingsData);
+  })
 })
