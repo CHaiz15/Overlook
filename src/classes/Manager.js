@@ -3,7 +3,6 @@ import Customer from './Customer.js';
 class Manager extends Customer {
   constructor(customerBookings, usersName, userId) {
     super(customerBookings, usersName, userId);
-    this.id = userId;
   }
   removeCustomerBooking(bookingID, bookingsData) {
     let foundBookingID;

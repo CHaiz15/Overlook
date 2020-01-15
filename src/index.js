@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import './css/base.scss';
+import moment from 'moment';
 
 import Hotel from '../src/classes/Hotel.js';
 import Customer from '../src/classes/Customer.js';
@@ -12,6 +13,7 @@ let customer;
 let manager;
 
 // Data fetching
+let todaysDate = moment().format('YYYY/MM/DD');
 let roomsData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms').then(response => response.json()).then(data => data.rooms);
 let usersData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users').then(response => response.json()).then(data => data.users);
 let bookingsData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings')
@@ -29,7 +31,7 @@ Promise.all([roomsData, usersData, bookingsData])
     bookingsData = data[2];
   }).then(() => {
     $('.explore-button').click(function() {
-      hotel = new Hotel(roomsData, bookingsData);
+      hotel = new Hotel(roomsData, bookingsData, todaysDate);
       checkLoginInfo(roomsData, usersData, bookingsData);
     })
 })
@@ -66,7 +68,6 @@ $('.search-availablity').click(function() {
   })
 })
 
-
 // Manager functions
 function displayManagerInterface() {
   domUpdates.openManagerInterface(hotel.todaysBookings(), hotel.filterByDate(hotel.todaysDate), roomsData.length, hotel.calculateTodaysRevenue(), hotel.todaysDate);
@@ -90,8 +91,10 @@ $('.search-customer').click(function() {
   let customerName = usersData.find(customer => customer.name.toLowerCase() === searchedName).name;
   customer = new Customer(hotel.customerBookings(customerId), customerName, customerId);
   manager = new Manager(hotel.customerBookings(customerId), customerName, customerId);
-  domUpdates.instantiateCustomersStatistics(hotel.customerFutureNights(customer.customerBookings, customerId), customer.name, customer.calculateTotalSpent(roomsData));
+  domUpdates.instantiateCustomersStatistics(hotel.customerFutureNights(customer.customerBookings, customerId), customer.name, manager.calculateTotalSpent(roomsData));
   $('.delete-room').click(function() {
     manager.removeCustomerBooking(this.id, bookingsData);
   })
 })
+
+$('.logout-button').click(function(){location.reload()});

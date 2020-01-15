@@ -1,5 +1,7 @@
 import chai from 'chai';
 const expect = chai.expect;
+import spies from "chai-spies";
+chai.use(spies);
 
 import Customer from '../src/classes/Customer.js';
 
@@ -61,6 +63,7 @@ describe('Customer:', () => {
   ];
   beforeEach(() => {
     customer = new Customer(customerBookings, "Eldridge Muller", 50);
+    chai.spy.on(customer, ['bookRoom'], () => {})
   });
   it('should be a function', function() {
     expect(Customer).to.be.a('function');
@@ -68,9 +71,6 @@ describe('Customer:', () => {
   describe('Default Values:', () => {
     it('should store customers id', function() {
       expect(customer.id).to.equal(50);
-    });
-    it('should store customers name', function() {
-      expect(customer.name).to.equal('Eldridge Muller');
     });
     it('should store customers name', function() {
       expect(customer.name).to.equal('Eldridge Muller');
@@ -110,6 +110,10 @@ describe('Customer:', () => {
   describe('Method Values:', () => {
     it('should find the customers total amount spent', function() {
       expect(customer.calculateTotalSpent(rooms)).to.equal('1352.67');
+    });
+    it("should check that removeCustomerBooking is called", () => {
+      customer.bookRoom();
+      expect(customer.bookRoom).to.have.been.called();
     });
   })
 })
