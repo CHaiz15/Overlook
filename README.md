@@ -9,7 +9,7 @@
 * Create a robust test suite that thoroughly tests all functionality of a client-side application
 
 ### Overview of Site:
-  * A Hotel application that allows users to login and book rooms. As well as allows a manger to login, book, and delete a users rooms.
+  * A Hotel application that allows users to login and book rooms. As well as allows a manager to login, book, and delete a users rooms.
   
 ### Example of Site:
 Customer Login:
